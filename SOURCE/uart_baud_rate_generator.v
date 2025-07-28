@@ -1,5 +1,5 @@
 module uart_baud_generator #(
-    parameter CLOCK_FREQ = 100000,   
+    parameter CLOCK_FREQ = 1000000,   
     parameter BAUD_RATE = 10000
 )(
     input wire clk,
