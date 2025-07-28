@@ -2,12 +2,12 @@
 
 ## 1. Project Overview
 
-This project implements a Universal Asynchronous Receiver Transmitter (UART) controller using Verilog HDL. The design includes modular implementation of the transmitter, receiver, baud rate generator, and a top-level controller to integrate the components. The system is configured to work with a **10 MHz system clock** and a **fixed baud rate of 10,000 bps**, making it suitable for mid-speed serial communication applications such as debugging interfaces or lightweight sensor networks.
+This project implements a Universal Asynchronous Receiver Transmitter (UART) controller using Verilog HDL. The design includes modular implementation of the transmitter, receiver, baud rate generator, and a top-level controller to integrate the components. The system is configured to work with a **1 MHz system clock** and a **fixed baud rate of 10,000 bps**, making it suitable for mid-speed serial communication applications such as debugging interfaces or lightweight sensor networks.
 
 ## 2. Features
 
 - Fully modular design with clean separation of concerns  
-- Baud rate generation from 10 MHz clock source  
+- Baud rate generation from 1 MHz clock source  
 - Separate UART Transmitter and Receiver modules  
 - Top-level integration module for system-wide simulation  
 - Thoroughly tested using individual and integrated testbenches
@@ -43,7 +43,7 @@ This project implements a Universal Asynchronous Receiver Transmitter (UART) con
 
 | Parameter         | Value         |
 |------------------|---------------|
-| Clock Frequency  | 10 MHz        |
+| Clock Frequency  | 1 MHz        |
 | Baud Rate        | 10,000 bps    |
 | Oversampling at receiver  | 16X   |
 
