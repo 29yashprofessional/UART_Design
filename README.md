@@ -1,50 +1,82 @@
-# UART_Design
-A modular Universal Asynchronous Receiver Transmitter (UART) system designed in Verilog HDL.
-This project includes separate modules for baud rate generation, transmitter, receiver, and top-level integration, with simulation and waveform visualization using GTKWave.
+# UART Controller Design
 
-## Features
-Modular Verilog design with reusable components
+## 1. Project Overview
 
-Parameterized baud rate generator
+This project implements a Universal Asynchronous Receiver Transmitter (UART) controller using Verilog HDL. The design includes modular implementation of the transmitter, receiver, baud rate generator, and a top-level controller to integrate the components. The system is configured to work with a **10 MHz system clock** and a **fixed baud rate of 10,000 bps**, making it suitable for mid-speed serial communication applications such as debugging interfaces or lightweight sensor networks.
 
-UART transmitter and receiver modules
+## 2. Features
 
-Top-level integration of all components
+- Fully modular design with clean separation of concerns  
+- Baud rate generation from 10 MHz clock source  
+- Separate UART Transmitter and Receiver modules  
+- Top-level integration module for system-wide simulation  
+- Thoroughly tested using individual and integrated testbenches
 
-Testbench for verification
+## 3. File Structure and Descriptions
 
-Waveform analysis using GTKWave
+### Source Files
 
-## Tools Used
-Verilog HDL (for RTL design)
+| File Name                  | Description |
+|---------------------------|-------------|
+| `uart_baud_rate_generator.v` | Generates the tick signal required for timing UART transmission and reception. |
+| `uart_receiver.v`            | Receives serial data and reconstructs bytes after sampling and bit-shifting. |
+| `uart_transmitter.v`         | Converts parallel data to serial and transmits with UART framing. |
+| `uart_top_module.v`          | Top-level integration of the transmitter, receiver, and baud generator. |
 
-VS Code (code editor)
+### Testbench Files
 
-GTKWave (waveform viewer)
+| File Name            | Description |
+|----------------------|-------------|
+| `baud_rate_tb.v`     | Tests tick generation timing of the baud rate generator. |
+| `receiver_tb.v`      | Validates UART receiver's ability to sample and decode serial input. |
+| `transmitter_tb.v`   | Verifies correct UART frame output from the transmitter. |
+| `top_tb_new.v`       | System-level testbench to validate full UART data transmission and reception. |
 
-Icarus Verilog (simulator)
+### Simulation Output Files
 
+| File Name           | Description |
+|---------------------|-------------|
+| `top_tb_new.vvp`    | Compiled simulation file. |
+| `uart_top.vcd`      | VCD waveform output for GTKWave. |
 
-## How to Run
-Clone the repository:
-git clone https://github.com/29yashprofessional/UART_Design.git
+## 4. Baud Rate and Timing Configuration
 
-Navigate to the directory:
-cd UART_Design
+| Parameter         | Value         |
+|------------------|---------------|
+| Clock Frequency  | 10 MHz        |
+| Baud Rate        | 10,000 bps    |
+| Oversampling at receiver  | 16X   |
 
-Compile and simulate (if using Icarus Verilog):
-iverilog -o uart_out testbench/uart_tb.v src/*.v
-vvp uart_out
+The baud rate generator outputs a tick every 1000 clock cycles to align with the 10,000 baud rate using the 10 MHz clock. Each tick represents the time duration of 1 bit in UART communication.
 
-View waveform in GTKWave:
-gtkwave dump.vcd
+## 5. Testbench Explanation
 
-## License
-This project is licensed under the MIT License.
-Feel free to use, modify, and distribute with credit.
+Each module is tested using a dedicated testbench to ensure correctness in isolation before integration:
 
-Contact
-For any queries, reach out at:
-yashprofessional29@gmail.com
+- **Baud Rate Generator (`baud_rate_tb.v`)**  
+  Validates timing of generated ticks at every 1000 clock cycles.
 
+- **Transmitter (`transmitter_tb.v`)**  
+  Simulates parallel data input and monitors serial UART output to ensure correct UART framing (start, data, stop bits).
 
+- **Receiver (`receiver_tb.v`)**  
+  Sends serial data as stimulus and checks whether the module correctly reconstructs the original byte.
+
+- **Top-Level Integration (`top_tb_new.v`)**  
+  Runs a complete simulation to check transmission and reception flow through the integrated design. Suitable for loopback tests or full communication verification.
+
+## 6. Simulation and Usage Steps
+
+### Compilation
+
+```bash
+iverilog -o top_tb_new.vvp ./SOURCE/*.v ./TESTBENCHES/top_tb_new.v
+```
+### Simulation
+```bash
+vvp top_tb_new.vvp
+```
+### Waveform generation
+```bash
+gtkwave uart_top.vcd
+```
