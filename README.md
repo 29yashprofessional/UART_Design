@@ -70,7 +70,7 @@ Each module is tested using a dedicated testbench to ensure correctness in isola
 ### Compilation
 
 ```bash
-iverilog -o top_tb_new.vvp ./SOURCE/*.v ./TESTBENCHES/top_tb_new.v
+iverilog -o top_tb_new.vvp SOURCE/*.v TESTBENCHES/top_tb_new.v
 ```
 ### Simulation
 ```bash
