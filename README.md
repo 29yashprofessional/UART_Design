@@ -14,7 +14,7 @@ This project implements a Universal Asynchronous Receiver Transmitter (UART) con
 
 ## File Structure and Descriptions
 
-### Source Files
+#### Source Files
 
 | File Name                  | Description |
 |---------------------------|-------------|
@@ -23,7 +23,7 @@ This project implements a Universal Asynchronous Receiver Transmitter (UART) con
 | `uart_transmitter.v`         | Converts parallel data to serial and transmits with UART framing. |
 | `uart_top_module.v`          | Top-level integration of the transmitter, receiver, and baud generator. |
 
-### Testbench Files
+#### Testbench Files
 
 | File Name            | Description |
 |----------------------|-------------|
@@ -32,7 +32,7 @@ This project implements a Universal Asynchronous Receiver Transmitter (UART) con
 | `transmitter_tb.v`   | Verifies correct UART frame output from the transmitter. |
 | `top_tb_new.v`       | System-level testbench to validate full UART data transmission and reception. |
 
-### Simulation Output Files
+#### Simulation Output Files
 
 | File Name           | Description |
 |---------------------|-------------|
@@ -47,7 +47,6 @@ This project implements a Universal Asynchronous Receiver Transmitter (UART) con
 | Baud Rate        | 10,000     |
 | Oversampling at receiver  | 16X   |
 
-The baud rate generator outputs a tick every 1000 clock cycles to align with the 10,000 baud rate using the 10 MHz clock. Each tick represents the time duration of 1 bit in UART communication.
 
 ## Testbench Explanation
 
@@ -67,16 +66,16 @@ Each module is tested using a dedicated testbench to ensure correctness in isola
 
 ## Simulation and Usage Steps
 
-### Compilation
+#### Compilation
 
 ```bash
 iverilog -o top_tb_new.vvp SOURCE/*.v TESTBENCHES/top_tb_new.v
 ```
-### Simulation
+#### Simulation
 ```bash
 vvp top_tb_new.vvp
 ```
-### Waveform generation
+#### Waveform generation
 ```bash
 gtkwave uart_top.vcd
 ```
