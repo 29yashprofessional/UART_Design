@@ -64,7 +64,7 @@ Each module is tested using a dedicated testbench to ensure correctness in isola
 - **Top-Level Integration (`top_tb_new.v`)**  
   Runs a complete simulation to check transmission and reception flow through the integrated design. Suitable for loopback tests or full communication verification.
 
-## Simulation and Usage Steps
+## Simulation and Usage
 
 #### Compilation
 
@@ -79,3 +79,7 @@ vvp top_tb_new.vvp
 ```bash
 gtkwave uart_top.vcd
 ```
+## Waveforms for the UART Controller
+
+<img width="1149" height="755" alt="Waveforms" src="https://github.com/user-attachments/assets/3baf7e3a-b13e-4577-98ee-df7985038c92" />
+
