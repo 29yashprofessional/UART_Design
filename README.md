@@ -10,7 +10,7 @@ This project implements a Universal Asynchronous Receiver Transmitter (UART) con
 - Baud rate generation from 1.6 MHz clock source  
 - Separate UART Transmitter and Receiver modules  
 - Top-level integration module for system-wide simulation  
-- Thoroughly tested using individual and integrated testbenches
+- Tested using integrated testbench
 
 ## File Structure and Descriptions
 
@@ -27,9 +27,6 @@ This project implements a Universal Asynchronous Receiver Transmitter (UART) con
 
 | File Name            | Description |
 |----------------------|-------------|
-| `baud_rate_tb.v`     | Tests tick generation timing of the baud rate generator. |
-| `receiver_tb.v`      | Validates UART receiver's ability to sample and decode serial input. |
-| `transmitter_tb.v`   | Verifies correct UART frame output from the transmitter. |
 | `top_tb_new.v`       | System-level testbench to validate full UART data transmission and reception. |
 
 #### Simulation Output Files
@@ -50,16 +47,7 @@ This project implements a Universal Asynchronous Receiver Transmitter (UART) con
 
 ## Testbench Explanation
 
-Each module is tested using a dedicated testbench to ensure correctness in isolation before integration:
-
-- **Baud Rate Generator (`baud_rate_tb.v`)**  
-  Validates timing of generated ticks.
-
-- **Transmitter (`transmitter_tb.v`)**  
-  Simulates parallel data input and monitors serial UART output to ensure correct UART framing (start, data, stop bits).
-
-- **Receiver (`receiver_tb.v`)**  
-  Sends serial data as stimulus and checks whether the module correctly reconstructs the original byte.
+The top module is tested using a dedicated testbench to ensure correctness of outputs:
 
 - **Top-Level Integration (`top_tb_new.v`)**  
   Runs a complete simulation to check transmission and reception flow through the integrated design. Suitable for loopback tests or full communication verification.
